@@ -1,0 +1,47 @@
+--To romve diplicate the location id by using DISTINCT
+select DISTINCT location_id from departments;
+
+--To select all columns from departments tables
+select * from departments;
+
+--To Selecting Specific Columns
+select department_id, department_id from departments;
+
+--Using Arithmetic Operators to add 300 in current salary
+select last_name, salary, salary + 300 from employees;
+
+--Using Arithmetic Operators to multiply salary into 12 and add 100
+select last_name, salary, 12*salary+100 from employees;
+
+--Using Arithmetic Operators to multiply into 12 of count of salary with add 100
+select last_name, salary, 12*(salary+100) from employees;
+
+--Defining a Null Value
+select last_name, job_id, salary, commission_pct from employees;
+
+--Null Values in Arithmetic Expressions (multiply 12 to salary and commission_pct)
+select last_name, job_id, salary, 12*salary*commission_pct from employees;
+
+--Using Column Aliases use AS keyword
+select last_name as Name, commission_pct as comm from employees;
+
+--Using Column Aliases without use AS keyword and multiply the salary to 12 as Annual Salary 
+select last_name "Name", salary*12 "Annual Salary" from employees;
+
+--Concatenation Operator (Concatenation last name with job id as one column
+select last_name || job_id as "Employees" from employees;
+
+--Concatenation Operator with Using Literal Character Strings
+select last_name || ' is a ' || job_id as "Employees" from employees;
+
+--Concatenation Operator with Alternative Quote (q) Operator
+select department_name || q'[ Department's Manager Id: ]' || manager_id as "Department and Manager" from departments;
+
+--To select column department_id from employees table
+select department_id from employees;
+
+--using DISTINCT to Duplicate Row department_id from employees table
+select DISTINCT department_id from employees;
+
+--To Displaying the Table Structure
+DESCRIBE employees;
