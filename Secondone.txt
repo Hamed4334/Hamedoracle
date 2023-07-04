@@ -1,0 +1,88 @@
+--**2 Restricting and Sorting Data****
+
+
+--Using Limiting the Rows That Are Selected by using the WHERE Clause
+select employee_id, last_name, job_id, department_id from employees where department_id = 90;
+
+--Using Limiting the Rows That Are Selected by using the Character Strings
+select last_name, job_id, department_id from employees where last_name = 'Whalen';
+
+--Using Limiting the Rows That Are Selected by using the Dates
+select last_name from employees where hire_date = '17-FEB-96';
+
+--Using Comparison Operators
+select last_name, salary from employees where salary <= 3000;
+
+--By using range Conditions Using the BETWEEN Operator
+select last_name, salary from employees where salary BETWEEN 2500 AND 3500;
+
+--Membership Condition Using the IN Operator to print any manager id only in 100,101,201
+select employee_id, last_name, salary, manager_id from employees where manager_id IN (100, 101, 201);
+
+--Pattern Matching Using the LIKE Operator to print any first name start with S
+select first_name from employees where first_name LIKE 'S%';
+
+--Combining Wildcard Characters to print any last name the first any character and the second character is small o
+select last_name from employees where last_name LIKE '_o%';
+
+--Using the NULL Conditions to print any manager id is null values
+select last_name, manager_id from employees where manager_id IS NULL;
+
+--Combining Wildcard by Using the AND Operator to print any salary >= 10000 and job id should contain world MAN
+select employee_id, last_name, job_id, salary from employees where salary >= 10000 AND job_id LIKE '%MAN%';
+
+--Combining Wildcard by Using the OR Operator to print any salary >= 10000 OR job id should contain world MAN
+select employee_id, last_name, job_id, salary from employees where salary >= 10000 OR job_id LIKE '%MAN%';
+
+--Combining Wildcard by Using the NOT Operator to print any job id but NOT IN IT_PROG,ST_CLERK,SA_REP
+select last_name, job_id from employees where job_id NOT IN ('IT_PROG', 'ST_CLERK', 'SA_REP');
+
+--Rules of Precedence to print first which salary > 15000 then where job id = SA_REP OR job id = AD_PRES Becouse in Rules of Precedence the AND logical condition come befor the OR logical condition
+select last_name, job_id, salary from employees 
+where job_id = 'SA_REP'
+OR job_id = 'AD_PRES'
+AND salary > 15000;
+
+--Rules of Precedence to print first which salary > 15000 then print where job id = SA_REP OR job id = AD_PRES As one condition Becouse inside one praket
+select last_name, job_id, salary from employees 
+where (job_id = 'SA_REP'
+OR job_id = 'AD_PRES')
+AND salary > 15000;
+
+
+--Using the ORDER BY Clause to sort by hire date 
+select last_name, job_id, department_id, hire_date from employees ORDER BY hire_date ;
+
+--Using the ORDER BY Clause to sort by hire date descending from big to small
+select last_name, job_id, department_id, hire_date from employees ORDER BY hire_date DESC  ;
+
+--Using the ORDER BY Clause to sort by column alias 
+select employee_id, last_name, salary*12 annsal from employees ORDER BY annsal;
+
+--Sorting by using the column’s numeric position which is print her by department_iddepartment_id becouse is the theerd column
+select last_name, job_id, department_id, hire_date from employees ORDER BY 3; 
+
+--Sorting by multiple columns which is order by department_id and salary descending from big to small
+select last_name, department_id, salary from employees ORDER BY department_id, salary DESC;
+
+
+--Use a variable prefixed with an ampersand (&) to prompt the user to inter the employee number
+select employee_id, last_name, salary, department_id from employees WHERE employee_id = &employee_num;
+
+--use Character and Date Values with Substitution Variables to enter the job title
+select last_name, department_id, salary*12 from employees WHERE job_id = '&job_title' ;
+
+--TO Specifying Column to choose the column which is we want to enter valus then write the coditation the which column we want order by?
+select employee_id, last_name, job_id,&column_name from employees 
+WHERE &condition
+ORDER BY &order_column;
+
+
+--Using the DEFINE Command to first define the column whit condiation then using this define in code
+DEFINE employee_num = 200
+SELECT employee_id, last_name, salary, department_id
+FROM employees
+WHERE employee_id = &employee_num ;
+
+--TO UNDEFINE the column
+UNDEFINE employee_num;
